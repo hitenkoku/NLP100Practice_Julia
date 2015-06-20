@@ -19,10 +19,27 @@ function ngram(inputStr, mode)
         println(splitedInputStr[wordCount-1], " ", splitedInputStr[wordCount])
       end
     end
+  #modeが"w"以外なら文字列による判定を行う。
+  else
+    for wordCount = 1:length(splitedInputStr)
+      charSplitKeyword = splitedInputStr[wordCount]
+      lenCharSplitKeyword = length(charSplitKeyword)
+      checkChar = 1
+      lenCharSplitKeyword == 1 && println("$charSplitKeyword")
+        while checkChar < lenCharSplitKeyword
+          if (checkChar + 1 > lenCharSplitKeyword)
+            println(charSplitKeyword[checkChar:lenCharSplitKeyword])
+          else
+            println(charSplitKeyword[checkChar:checkChar+1])
+          end
+          checkChar += 1
+        end
+      end
   end
 end
-
 input = "I am an NLPer"
 println("input:$input")
 println("---Word bi-gram---")
 ngram(input, "w")
+println("---char bi-gram---")
+ngram(input, "c")
